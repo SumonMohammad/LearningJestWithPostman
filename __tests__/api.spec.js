@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+//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   jest access token
 // Base URL of the API
 const BASE_URL = 'https://api-dev.techetronventures.com';
 describe('API Automation Suite', () => {
@@ -41,6 +41,19 @@ describe('API Automation Suite', () => {
     expect(response.status).toBe(200);
     accessToken = response.data.data.access;
     console.log(accessToken);
+  });
+
+   test('Should validate access token successfully', async () => {
+        const response = await axios.post(`${BASE_URL}/api/v1/auth/validate-access-token`, {
+
+              "access": accessToken
+             
+        });
+
+        // Assertions
+        expect(response.status).toBe(200);
+        code = response.data.code;
+        console.log(code);
 
   });
 
